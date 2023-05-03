@@ -42,8 +42,10 @@ buttonEl.addEventListener('click', event => {
   if (data.message) {
     result.message = data.message;
   }
-  console.log(result);
-
+  if (localStorage.getItem(STORAGE_KEY) !== null) {
+    console.log(result);
+  }
+  
   event.preventDefault();
   formEl.reset();
   messageEl.textContent = '';
