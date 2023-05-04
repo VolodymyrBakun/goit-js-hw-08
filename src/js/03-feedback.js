@@ -22,18 +22,7 @@ if (localStorage.getItem(STORAGE_KEY) !== null) {
 }
 
 formEl.addEventListener('input', throttle(handleInput, 500));
-
-function handleInput(event) {
-  if (event.target.tagName === 'INPUT') {
-    data.email = event.target.value;
-  }
-  if (event.target.tagName === 'TEXTAREA') {
-    data.message = event.target.value;
-  }
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-}
-
-buttonEl.addEventListener('click', event => {
+formEl.addEventListener('submit', event => {
   result = {};
 
   if (data.email) {
@@ -53,3 +42,14 @@ buttonEl.addEventListener('click', event => {
   data.email = '';
   data.message = '';
 });
+
+
+function handleInput(event) {
+    if (event.target.tagName === 'INPUT') {
+      data.email = event.target.value;
+    }
+    if (event.target.tagName === 'TEXTAREA') {
+      data.message = event.target.value;
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
