@@ -22,37 +22,41 @@ if (localStorage.getItem(STORAGE_KEY) !== null) {
 }
 
 formEl.addEventListener('input', throttle(handleInput, 500));
-formEl.addEventListener('submit', handleSubmit) 
+formEl.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
-    event.preventDefault();
-  result = {};
+  event.preventDefault();
 
-  if (data.email) {
-    result.email = data.email;
+  if (inputEmailEL.value.trim() === '' || messageEl.value.trim() === '') {
+    return;
   }
-  if (data.message) {
-    result.message = data.message;
-  }
+//   result = {};
+
+//   if (data.email) {
+//     result.email = data.email;
+//   }
+//   if (data.message) {
+//     result.message = data.message;
+//   }
   if (localStorage.getItem(STORAGE_KEY) !== null) {
-    console.log(result);
+    // console.log(result);
+    console.log('from local');
+    console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
   }
-  
-  
+
   formEl.reset();
   messageEl.textContent = '';
   localStorage.clear();
   data.email = '';
   data.message = '';
-};
-
+}
 
 function handleInput(event) {
-    if (event.target.tagName === 'INPUT') {
-      data.email = event.target.value;
-    }
-    if (event.target.tagName === 'TEXTAREA') {
-      data.message = event.target.value;
-    }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  if (event.target.tagName === 'INPUT') {
+    data.email = event.target.value;
   }
+  if (event.target.tagName === 'TEXTAREA') {
+    data.message = event.target.value;
+  }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
