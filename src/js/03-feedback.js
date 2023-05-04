@@ -22,7 +22,10 @@ if (localStorage.getItem(STORAGE_KEY) !== null) {
 }
 
 formEl.addEventListener('input', throttle(handleInput, 500));
-formEl.addEventListener('submit', event => {
+formEl.addEventListener('submit', handleSubmit) 
+
+function handleSubmit(event) {
+    event.preventDefault();
   result = {};
 
   if (data.email) {
@@ -35,13 +38,13 @@ formEl.addEventListener('submit', event => {
     console.log(result);
   }
   
-  event.preventDefault();
+  
   formEl.reset();
   messageEl.textContent = '';
   localStorage.clear();
   data.email = '';
   data.message = '';
-});
+};
 
 
 function handleInput(event) {
