@@ -28,19 +28,10 @@ function handleSubmit(event) {
   event.preventDefault();
 
   if (inputEmailEL.value.trim() === '' || messageEl.value.trim() === '') {
+    alert('Будь ласка, заповніть всі поля форми!!!');
     return;
   }
-//   result = {};
-
-//   if (data.email) {
-//     result.email = data.email;
-//   }
-//   if (data.message) {
-//     result.message = data.message;
-//   }
   if (localStorage.getItem(STORAGE_KEY) !== null) {
-    // console.log(result);
-    console.log('from local');
     console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
   }
 
